@@ -26,13 +26,13 @@ RUN chown -R nobody:users /opt/couchpotato
 
 EXPOSE 5050
 
-# SickBeard Configuration
+# Couchpotato Configuration
 VOLUME /config
 
 # TV directory
 VOLUME /movies
 
-# Add Sickbeard to runit
+# Add couchpotato to runit
 RUN mkdir /etc/service/couchpotato
 ADD init/couchpotato.sh /etc/service/couchpotato/run
 RUN chmod +x /etc/service/couchpotato/run
