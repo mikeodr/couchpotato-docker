@@ -7,22 +7,21 @@ ENV HOME /root
 
 CMD ["/sbin/my_init"]
 
-RUN usermod -u 99 nobody
-RUN usermod -g 100 nobody
+RUN usermod -u 99 nobody && \
+usermod -g 100 nobody
 
-RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty universe multiverse"
-RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates universe multiverse"
-RUN apt-get update -qq
-RUN apt-get upgrade -qq
-
+RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty universe multiverse" && \
+add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates universe multiverse" && \
+apt-get update -qq && apt-get upgrade -qq && \
 # Install Dependencies
-RUN apt-get install -qq -y git python python-cheetah ca-certificates
+apt-get install -qq -y git python python-cheetah ca-certificates && \
+rm -rf /var/lib/apt/lists/*
 
 
 # Install SickBeard
-RUN mkdir /opt/couchpotato
-RUN git clone https://github.com/RuudBurger/CouchPotatoServer.git -b master /opt/couchpotato
-RUN chown -R nobody:users /opt/couchpotato
+RUN mkdir /opt/couchpotato && \
+git clone https://github.com/RuudBurger/CouchPotatoServer.git -b master /opt/couchpotato && \
+chown -R nobody:users /opt/couchpotato
 
 EXPOSE 5050
 
