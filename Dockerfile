@@ -14,7 +14,7 @@ RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty universe
 add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates universe multiverse" && \
 apt-get update -qq && apt-get upgrade -qq && \
 # Install Dependencies
-apt-get install -qq -y git python python-cheetah ca-certificates && \
+apt-get install -qq -y git python python-cheetah ca-certificates python-openssl && \
 rm -rf /var/lib/apt/lists/*
 
 
